@@ -2,18 +2,20 @@ plugins {
     id 'java'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+group = 'com.mercedes-benz.me'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation("org.testng:testng:7.10.2")
+    implementation("org.seleniumhq.selenium:selenium-java:4.27.0")
+    testImplementation("org.testng:testng:7.10.2")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.27.0")
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
 }
