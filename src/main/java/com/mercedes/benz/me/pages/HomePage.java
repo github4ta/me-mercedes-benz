@@ -9,7 +9,47 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
 
     private final String HEADER_PRIVACY_POLICY_ICON = "//a[@data-test-id='header-privacy-policy']";
-
     private final By HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT = By.xpath("//a[@data-test-id='header-integration-item-fss-search-input']");
+    private final By PARENT_SELECTOR = By.cssSelector("owc-footer");
+    private final By COPYRIGHT = By.cssSelector("li.owc-lower-footer-legal__license");
+    private final By TERMS_OF_USE = By.cssSelector("li.owc-lower-footer-legal__item");
 
-   }
+    private final WebDriver driver;
+
+    public HomePage() {
+        driver = SeleniumWebDriver.getDriver();
+    }
+
+    public HomePage clickInputSearch() {
+        driver.findElement(HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT).click();
+        return this;
+    }
+
+    public HomePage clickCopyright() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+        SearchContext context = parentElement.getShadowRoot();
+        WebElement element = context.findElement(COPYRIGHT);
+        element.click();
+        return (HomePage) element;
+    }
+
+    public HomePage clickTermsOfUse() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+        SearchContext context = parentElement.getShadowRoot();
+        WebElement element = context.findElement(TERMS_OF_USE);
+        element.click();
+        return (HomePage) element;
+    }
+
+    public String getTextCopyright() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+        SearchContext context = parentElement.getShadowRoot();
+        return context.findElement(COPYRIGHT).getText();
+    }
+
+    public String getTextTermsOfUse() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+        SearchContext context = parentElement.getShadowRoot();
+        return context.findElement(TERMS_OF_USE).getText();
+    }
+}
