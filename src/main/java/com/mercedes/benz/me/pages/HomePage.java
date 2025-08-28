@@ -9,7 +9,6 @@ import java.time.Duration;
 
 public class HomePage {
 
-    private final String BASE_URL = "https://www.me.mercedes-benz.com/";
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
     private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu__sublabel");
     private final By PARENT_SELECTOR = By.cssSelector("owc-footer");
@@ -21,22 +20,18 @@ public class HomePage {
         driver = SeleniumWebDriver.getDriver();
     }
 
-    public HomePage open() {
-        driver.get(BASE_URL);
-        return this;
-    }
-
 
     public HomePage clickPrivacyPolicy() {
         SeleniumWebDriver.clickElement(HEADER_PRIVACY_POLICY_ICON);
         return this;
     }
 
-    public HomePage clickPrivateCustomer(){
+    public HomePage clickPrivateCustomer() {
         SeleniumWebDriver.clickElement(PRIVATE_CUSTOMER);
         return this;
     }
-    public HomePage clickPrivacyNotice(){
+
+    public HomePage clickPrivacyNotice() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(PARENT_SELECTOR));
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -47,6 +42,7 @@ public class HomePage {
         link.click();
         return this;
     }
+
     public HomePage getPrivacyNoticeText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(PARENT_SELECTOR));
