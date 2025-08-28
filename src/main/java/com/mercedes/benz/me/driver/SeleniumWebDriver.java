@@ -1,6 +1,8 @@
 package com.mercedes.benz.me.driver;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -8,7 +10,8 @@ public class SeleniumWebDriver {
 
     private static WebDriver driver;
 
-    private SeleniumWebDriver() {}
+    private SeleniumWebDriver() {
+    }
 
     public static WebDriver getDriver() {
         if (driver == null) {
@@ -33,5 +36,9 @@ public class SeleniumWebDriver {
             driver.quit();
             driver = null;
         }
+    }
+
+    public static void clickElement(By element) {
+        driver.findElement(element).click();
     }
 }
