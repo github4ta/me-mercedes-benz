@@ -1,10 +1,12 @@
 package com.mercedes.benz.me.driver;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SeleniumWebDriver {
 
@@ -40,5 +42,14 @@ public class SeleniumWebDriver {
 
     public static void clickElement(By element) {
         driver.findElement(element).click();
+    }
+
+    public static WebElement actionWithShadowElement(By parentSelector, By shadowElementSelector) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(parentSelector));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
+        assert shadowRoot != null;
+        return shadowRoot.findElement(shadowElementSelector);
     }
 }

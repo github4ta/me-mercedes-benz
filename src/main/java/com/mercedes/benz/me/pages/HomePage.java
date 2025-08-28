@@ -2,10 +2,6 @@ package com.mercedes.benz.me.pages;
 
 import com.mercedes.benz.me.driver.SeleniumWebDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class HomePage {
 
@@ -32,26 +28,12 @@ public class HomePage {
     }
 
     public HomePage clickPrivacyNotice() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(PARENT_SELECTOR));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
-        assert shadowRoot != null;
-        WebElement link = shadowRoot.findElement(PRIVACY_NOTICE);
-        wait.until(ExpectedConditions.elementToBeClickable(link));
-        link.click();
+        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,PRIVACY_NOTICE).click();
         return this;
     }
 
     public HomePage getPrivacyNoticeText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(PARENT_SELECTOR));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
-        assert shadowRoot != null;
-        WebElement link = shadowRoot.findElement(PRIVACY_NOTICE);
-        wait.until(ExpectedConditions.visibilityOf(link));
-        link.getText();
+        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,PRIVACY_NOTICE).getText();
         return this;
     }
 }
