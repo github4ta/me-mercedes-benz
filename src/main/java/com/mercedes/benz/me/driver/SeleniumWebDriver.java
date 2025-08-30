@@ -18,7 +18,6 @@ public class SeleniumWebDriver {
     public static WebDriver getDriver() {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
             options.addArguments("--disable-notifications");
             options.addArguments("--incognito");
             options.addArguments("--disable-infobars");
