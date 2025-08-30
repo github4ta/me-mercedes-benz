@@ -16,8 +16,7 @@ public class HomePage {
         driver = SeleniumWebDriver.getDriver();
     }
 
-
-    public HomePage clickPrivacyPolicy() {
+    public HomePage clickHeaderPrivacyPolicyIcon() {
         SeleniumWebDriver.clickElement(HEADER_PRIVACY_POLICY_ICON);
         return this;
     }
@@ -28,12 +27,12 @@ public class HomePage {
     }
 
     public HomePage clickPrivacyNotice() {
-        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,PRIVACY_NOTICE).click();
+        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).click();
         return this;
     }
 
     public HomePage getPrivacyNoticeText() {
-        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,PRIVACY_NOTICE).getText();
+        SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).getText();
         return this;
     }
 }

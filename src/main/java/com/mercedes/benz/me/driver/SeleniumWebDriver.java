@@ -26,7 +26,6 @@ public class SeleniumWebDriver {
             options.addArguments("profile.default_content_setting_values.autofill_enabled=0");
             options.addArguments("--disable-popup-blocking");
             driver = new ChromeDriver(options);
-            driver = new ChromeDriver();
             driver.manage().window().maximize();
         }
 
