@@ -92,4 +92,8 @@ public class HomePage {
         action.scrollByAmount(0, 1000).perform();
         return this;
     }
+
+    public String gettingTabAddress() {
+        return driver.getCurrentUrl();
+    }
 }

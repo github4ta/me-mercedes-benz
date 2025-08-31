@@ -35,11 +35,11 @@ public class AnyTest {
     @DisplayName("Checking that the correct page has opened.")
     public void test3() {
 
-        HomePage page = new BasePage()
+        String actual = new BasePage()
                 .openHomePage()
                 .scrollSite()
-                .clickTextCopyrightMercedesBenzUsa();
-        String actual = getDriver().getCurrentUrl();
+                .clickTextCopyrightMercedesBenzUsa()
+                .gettingTabAddress();
         Assertions.assertEquals("https://www.mbusa.com/en/copyright", actual);
     }
 
