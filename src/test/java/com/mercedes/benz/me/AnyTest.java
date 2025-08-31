@@ -5,10 +5,15 @@ import com.mercedes.benz.me.pages.BasePage;
 import com.mercedes.benz.me.pages.HomePage;
 import org.junit.jupiter.api.*;
 
+
+import static com.mercedes.benz.me.driver.SeleniumWebDriver.getDriver;
+
+
 public class AnyTest {
+
     @Test
     @DisplayName("Checking for the presence of a search window")
-    public void test(){
+    public void test() {
         boolean actual = new BasePage()
                 .openHomePage()
                 .clickInputSearch()
@@ -18,7 +23,7 @@ public class AnyTest {
 
     @Test
     @DisplayName("Checking for text on the main page (©2025 Mercedes-Benz USA, LLC. All rights reserved)")
-    public void test2(){
+    public void test2() {
         String actual = new BasePage()
                 .openHomePage()
                 .scrollSite()
@@ -26,8 +31,20 @@ public class AnyTest {
         Assertions.assertEquals("©2025 Mercedes-Benz USA, LLC. All rights reserved.", actual);
     }
 
+    @Test
+    @DisplayName("Checking that the correct page has opened.")
+    public void test3() {
+
+        HomePage page = new BasePage()
+                .openHomePage()
+                .scrollSite()
+                .clickTextCopyrightMercedesBenzUsa();
+        String actual = getDriver().getCurrentUrl();
+        Assertions.assertEquals("https://www.mbusa.com/en/copyright", actual);
+    }
+
     @AfterEach
-    public void quit(){
+    public void quit() {
         SeleniumWebDriver.quitDriver();
     }
 }

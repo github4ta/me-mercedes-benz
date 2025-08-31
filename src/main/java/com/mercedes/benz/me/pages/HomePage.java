@@ -5,12 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
-import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 
 public class HomePage {
 
@@ -33,12 +33,15 @@ public class HomePage {
         return this;
     }
 
-    public HomePage clickCopyright() {
+    public HomePage clickTextCopyrightMercedesBenzUsa() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
         WebElement element = context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA);
         element.click();
-        return (HomePage) element;
+        Set<String> windowHandles = driver.getWindowHandles();
+        List<String> windowHandlesList = new ArrayList<>(windowHandles);
+        driver.switchTo().window(windowHandlesList.getLast());
+        return this;
     }
 
     public HomePage clickTermsOfUse() {
@@ -46,11 +49,11 @@ public class HomePage {
         SearchContext context = parentElement.getShadowRoot();
         WebElement element = context.findElement(TERMS_OF_USE);
         element.click();
-        return (HomePage) element;
+        return this;
     }
 
-    public String getTextCopyrightMercedesBenzUsa(){
-        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
+    public String getTextCopyrightMercedesBenzUsa() {
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
     }
 
     public String getTextTermsOfUse() {
@@ -83,7 +86,8 @@ public class HomePage {
     public boolean isPresenceWindowSearch() {
         return !driver.findElements(SEARCH_WINDOW).isEmpty();
     }
-    public HomePage scrollSite(){
+
+    public HomePage scrollSite() {
         Actions action = new Actions(driver);
         action.scrollByAmount(0, 1000).perform();
         return this;
