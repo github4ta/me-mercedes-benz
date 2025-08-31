@@ -15,6 +15,7 @@ public class HomePage {
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
     private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu__sublabel");
     private final By PRIVACY_NOTICE = By.cssSelector("li.owc-lower-footer-legal__item");
+    private final By SEARCH_WINDOW = By.id("fss-search-input");
     private final WebDriver driver;
 
     public HomePage() {
@@ -73,5 +74,9 @@ public class HomePage {
     public HomePage getPrivacyNoticeText() {
         SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).getText();
         return this;
+    }
+
+    public boolean isPresenceWindowSearch() {
+        return !driver.findElements(SEARCH_WINDOW).isEmpty();
     }
 }
