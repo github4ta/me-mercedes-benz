@@ -10,7 +10,7 @@ public class HomePage {
 
     private final By HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT = By.xpath("//a[@data-test-id='header-integration-item-fss-search-input']");
     private final By PARENT_SELECTOR = By.cssSelector("owc-footer");
-    private final By COPYRIGHT = By.cssSelector("li.owc-lower-footer-legal__license");
+    private final By COPYRIGHT_TEXT_MERCEDES_BENZ_USA = By.cssSelector("a.owc-lower-footer-legal__link");
     private final By TERMS_OF_USE = By.cssSelector("li.owc-lower-footer-legal__item");
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
     private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu__sublabel");
@@ -30,7 +30,7 @@ public class HomePage {
     public HomePage clickCopyright() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
-        WebElement element = context.findElement(COPYRIGHT);
+        WebElement element = context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA);
         element.click();
         return (HomePage) element;
     }
@@ -46,7 +46,7 @@ public class HomePage {
     public String getTextCopyright() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
-        return context.findElement(COPYRIGHT).getText();
+        return context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
     }
 
     public String getTextTermsOfUse() {
