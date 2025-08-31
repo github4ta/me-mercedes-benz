@@ -15,6 +15,17 @@ public class AnyTest {
                 .isPresenceWindowSearch();
         Assertions.assertTrue(actual);
     }
+
+    @Test
+    @DisplayName("Checking for text on the main page (©2025 Mercedes-Benz USA, LLC. All rights reserved)")
+    public void test2(){
+        String actual = new BasePage()
+                .openHomePage()
+                .scrollSite()
+                .getTextCopyrightMercedesBenzUsa();
+        Assertions.assertEquals("©2025 Mercedes-Benz USA, LLC. All rights reserved.", actual);
+    }
+
     @AfterEach
     public void quit(){
         SeleniumWebDriver.quitDriver();

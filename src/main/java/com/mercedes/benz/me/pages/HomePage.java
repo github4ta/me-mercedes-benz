@@ -5,6 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.swing.*;
+import java.time.Duration;
 
 public class HomePage {
 
@@ -43,10 +49,13 @@ public class HomePage {
         return (HomePage) element;
     }
 
-    public String getTextCopyright() {
-        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
-        SearchContext context = parentElement.getShadowRoot();
-        return context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
+//        public String getTextCopyrightMercedesBenzUsa() {
+//            WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+//        SearchContext context = parentElement.getShadowRoot();
+//        return context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
+//    }
+    public String getTextCopyrightMercedesBenzUsa(){
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
     }
 
     public String getTextTermsOfUse() {
@@ -78,5 +87,10 @@ public class HomePage {
 
     public boolean isPresenceWindowSearch() {
         return !driver.findElements(SEARCH_WINDOW).isEmpty();
+    }
+    public HomePage scrollSite(){
+        Actions action = new Actions(driver);
+        action.scrollByAmount(0, 1000).perform();
+        return this;
     }
 }
