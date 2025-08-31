@@ -8,11 +8,15 @@ import org.openqa.selenium.WebElement;
 
 public class HomePage {
 
-    private final String HEADER_PRIVACY_POLICY_ICON = "//a[@data-test-id='header-privacy-policy']";
+    private final By HEADER_PRIVACY_POLICY_ICON = By.xpath("//a[@data-test-id='header-privacy-policy']");
     private final By HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT = By.xpath("//a[@data-test-id='header-integration-item-fss-search-input']");
     private final By PARENT_SELECTOR = By.cssSelector("owc-footer");
     private final By COPYRIGHT = By.cssSelector("li.owc-lower-footer-legal__license");
     private final By TERMS_OF_USE = By.cssSelector("li.owc-lower-footer-legal__item");
+    private final By PRIVACY_NOTICE = By.cssSelector("li.owc-lower-footer-legal__item");
+    private final By PRIVATE_CUSTOMER = By.xpath("//div[@class='hp-header-ssr-user-menu__sublabel']");
+    private final By PARENT_SELECTOR_PRIVATE_CUSTOMER = By.cssSelector("iam-user-menu-v3");
+    private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("data-test-id=user-menu-title");
 
     private final WebDriver driver;
 
@@ -51,5 +55,27 @@ public class HomePage {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
         return context.findElement(TERMS_OF_USE).getText();
+    }
+
+    public String getTextPrivacyNotice() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
+        SearchContext context = parentElement.getShadowRoot();
+        return context.findElement(PRIVACY_NOTICE).getText();
+    }
+
+    public HomePage clickPrivateCustomer() {
+        driver.findElement(PRIVATE_CUSTOMER).click();
+        return this;
+    }
+
+    public String getTextYourMercedesBenzAccount() {
+        WebElement parentElement = driver.findElement(PARENT_SELECTOR_PRIVATE_CUSTOMER);
+        SearchContext context = parentElement.getShadowRoot();
+        return context.findElement(TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
+    }
+
+    public HomePage clickHeaderPrivacyPolicyIcon() {
+        driver.findElement(HEADER_PRIVACY_POLICY_ICON).click();
+        return this;
     }
 }
