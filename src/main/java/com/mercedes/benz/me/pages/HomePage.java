@@ -49,11 +49,6 @@ public class HomePage {
         return (HomePage) element;
     }
 
-//        public String getTextCopyrightMercedesBenzUsa() {
-//            WebElement parentElement = driver.findElement(PARENT_SELECTOR);
-//        SearchContext context = parentElement.getShadowRoot();
-//        return context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
-//    }
     public String getTextCopyrightMercedesBenzUsa(){
         return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR,COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
     }
