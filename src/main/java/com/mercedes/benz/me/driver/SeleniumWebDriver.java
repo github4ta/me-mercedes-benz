@@ -2,6 +2,9 @@ package com.mercedes.benz.me.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.time.Duration;
 
 public class SeleniumWebDriver {
 
@@ -11,8 +14,12 @@ public class SeleniumWebDriver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--disable-notifications");
+            options.addArguments("--disable-infobars");
+            driver = new ChromeDriver(options);
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
 
         return driver;
