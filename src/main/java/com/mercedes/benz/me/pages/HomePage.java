@@ -40,6 +40,10 @@ public class HomePage {
         SearchContext context = parentElement.getShadowRoot();
         WebElement element = context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA);
         element.click();
+        return this;
+    }
+
+    public HomePage switchToLastWindow(){
         List<String> windowHandlesList = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowHandlesList.getLast());
         return this;

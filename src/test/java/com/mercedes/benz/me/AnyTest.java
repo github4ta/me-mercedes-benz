@@ -36,6 +36,7 @@ public class AnyTest {
                 .openHomePage()
                 .scrollSite()
                 .clickTextCopyrightMercedesBenzUsa()
+                .switchToLastWindow()
                 .gettingTabAddress();
         Assertions.assertEquals("https://www.mbusa.com/en/copyright", actual);
     }
