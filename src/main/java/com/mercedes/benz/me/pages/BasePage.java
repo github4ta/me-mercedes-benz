@@ -13,7 +13,8 @@ public class BasePage {
         driver = SeleniumWebDriver.getDriver();
     }
 
-    public void openHomePage() {
+    public HomePage openHomePage() {
         driver.get(BASE_URL);
+        return new HomePage();
     }
 }
