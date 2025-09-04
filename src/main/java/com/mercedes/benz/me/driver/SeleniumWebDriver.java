@@ -1,12 +1,16 @@
 package com.mercedes.benz.me.driver;
 
+import com.mercedes.benz.me.pages.HomePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SeleniumWebDriver {
 
@@ -49,5 +53,19 @@ public class SeleniumWebDriver {
         SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
         assert shadowRoot != null;
         return shadowRoot.findElement(shadowElementSelector);
+    }
+
+    public static void scrollPageDown() {
+        Actions actions = new Actions(getDriver());
+        actions.scrollByAmount(0, 900).perform();
+    }
+
+    public static void switchToLastWindow() {
+        List<String> windowHandlesList = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(windowHandlesList.getLast());
+    }
+
+    public static String getTabUrl() {
+        return getDriver().getCurrentUrl();
     }
 }
