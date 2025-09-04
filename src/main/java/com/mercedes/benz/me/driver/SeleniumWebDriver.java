@@ -61,12 +61,12 @@ public class SeleniumWebDriver {
         actions.scrollByAmount(0, 900).perform();
     }
 
-    public static  void switchToLastWindow() {
+    public static void switchToLastWindow() {
         List<String> windowHandlesList = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(windowHandlesList.getLast());
     }
 
-    public static  String getTabUrl() {
+    public static String getTabUrl() {
         return getDriver().getCurrentUrl();
     }
 }
