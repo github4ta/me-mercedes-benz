@@ -56,17 +56,17 @@ public class SeleniumWebDriver {
         return shadowRoot.findElement(shadowElementSelector);
     }
 
-    public void scrollSite() {
-        Actions actions = new Actions(driver);
+    public static void scrollSite() {
+        Actions actions = new Actions(getDriver());
         actions.scrollByAmount(0, 900).perform();
     }
 
-    public void switchToLastWindow() {
-        List<String> windowHandlesList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowHandlesList.getLast());
+    public static  void switchToLastWindow() {
+        List<String> windowHandlesList = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(windowHandlesList.getLast());
     }
 
-    public String getTabUrl() {
-        return driver.getCurrentUrl();
+    public static  String getTabUrl() {
+        return getDriver().getCurrentUrl();
     }
 }
