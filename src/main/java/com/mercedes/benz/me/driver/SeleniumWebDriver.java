@@ -56,7 +56,7 @@ public class SeleniumWebDriver {
         return shadowRoot.findElement(shadowElementSelector);
     }
 
-    public static void scrollSite() {
+    public static void scrollPageDown() {
         Actions actions = new Actions(getDriver());
         actions.scrollByAmount(0, 900).perform();
     }
