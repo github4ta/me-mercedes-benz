@@ -8,10 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class HomePage {
@@ -30,6 +28,7 @@ public class HomePage {
         driver = SeleniumWebDriver.getDriver();
     }
 
+
     public HomePage clickInputSearch() {
         driver.findElement(HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT).click();
         return this;
@@ -43,9 +42,8 @@ public class HomePage {
         return this;
     }
 
-    public HomePage switchToLastWindow(){
-        List<String> windowHandlesList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowHandlesList.getLast());
+    public HomePage switchToLastWindow() {
+        SeleniumWebDriver.switchToLastWindow();
         return this;
     }
 
@@ -93,12 +91,11 @@ public class HomePage {
     }
 
     public HomePage scrollSite() {
-        Actions action = new Actions(driver);
-        action.scrollByAmount(0, 1000).perform();
+        SeleniumWebDriver.scrollPageDown();
         return this;
     }
 
     public String gettingTabAddress() {
-        return driver.getCurrentUrl();
+        return SeleniumWebDriver.getTabUrl();
     }
 }
