@@ -1,25 +1,35 @@
 package com.mercedes.benz.me.driver;
 
-import org.openqa.selenium.WebDriver;
+import com.mercedes.benz.me.pages.HomePage;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SeleniumWebDriver {
 
     private static WebDriver driver;
 
-    private SeleniumWebDriver() {}
+    private SeleniumWebDriver() {
+    }
 
     public static WebDriver getDriver() {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-notifications");
+            options.addArguments("--incognito");
             options.addArguments("--disable-infobars");
+            options.addArguments("profile.default_content_setting_values.password_manager_enabled=0");
+            options.addArguments("profile.default_content_setting_values.autofill_enabled=0");
+            options.addArguments("--disable-popup-blocking");
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
 
         return driver;
@@ -30,5 +40,32 @@ public class SeleniumWebDriver {
             driver.quit();
             driver = null;
         }
+    }
+
+    public static void clickElement(By element) {
+        driver.findElement(element).click();
+    }
+
+    public static WebElement actionWithShadowElement(By parentSelector, By shadowElementSelector) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(parentSelector));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
+        assert shadowRoot != null;
+        return shadowRoot.findElement(shadowElementSelector);
+    }
+
+    public static void scrollPageDown() {
+        Actions actions = new Actions(getDriver());
+        actions.scrollByAmount(0, 900).perform();
+    }
+
+    public static void switchToLastWindow() {
+        List<String> windowHandlesList = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(windowHandlesList.getLast());
+    }
+
+    public static String getTabUrl() {
+        return getDriver().getCurrentUrl();
     }
 }
