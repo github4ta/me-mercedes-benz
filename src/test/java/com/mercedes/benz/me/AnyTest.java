@@ -5,6 +5,7 @@ import com.mercedes.benz.me.pages.BasePage;
 import org.junit.jupiter.api.*;
 
 
+
 public class AnyTest {
 
     @Test
@@ -44,4 +45,5 @@ public class AnyTest {
     public void quit() {
         SeleniumWebDriver.quitDriver();
     }
+
 }
