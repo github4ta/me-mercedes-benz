@@ -19,6 +19,7 @@ public class HomePage {
     private final By PARENT_SELECTOR_PRIVATE_CUSTOMER = By.cssSelector("iam-user-menu-v3");
     private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading[data-test-id=user-menu-title]");
 
+
     private final WebDriver driver;
 
     public HomePage() {
