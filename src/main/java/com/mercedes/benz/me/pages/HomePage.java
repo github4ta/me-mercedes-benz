@@ -15,11 +15,11 @@ public class HomePage {
     private final By COPYRIGHT_TEXT_MERCEDES_BENZ_USA = By.cssSelector("a.owc-lower-footer-legal__link");
     private final By TERMS_OF_USE = By.cssSelector("li.owc-lower-footer-legal__item");
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
-    private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu__sublabel");
+    private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu");
     private final By PRIVACY_NOTICE = By.cssSelector("li.owc-lower-footer-legal__item");
     private final By SEARCH_WINDOW = By.id("fss-search-input");
     private final WebDriver driver;
-    private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading[data-test-id=user-menu-title]");
+    private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading.wb-heading.hydrated");
     private final By PARENT_SELECTOR_PRIVATE_CUSTOMER = By.cssSelector("iam-user-menu-v3");
 
     public HomePage() {
@@ -68,22 +68,21 @@ public class HomePage {
         return context.findElement(PRIVACY_NOTICE).getText();
     }
 
-    public HomePage clickHeaderPrivacyPolicyIcon() {
-        SeleniumWebDriver.clickElement(HEADER_PRIVACY_POLICY_ICON);
-        return this;
-    }
 
     public HomePage clickPrivateCustomer() {
         SeleniumWebDriver.clickElement(PRIVATE_CUSTOMER);
         return this;
     }
 
+    //    public String getTextYourMercedesBenzAccount() {
+//        WebElement parentElement = driver.findElement(PARENT_SELECTOR_PRIVATE_CUSTOMER);
+//        SearchContext context = parentElement.getShadowRoot();
+//        return context.findElement(TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
+//    }
     public String getTextYourMercedesBenzAccount() {
-        WebElement parentElement = driver.findElement(PARENT_SELECTOR_PRIVATE_CUSTOMER);
-        SearchContext context = parentElement.getShadowRoot();
-        return context.findElement(TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
-
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
     }
+
 
     public HomePage clickPrivacyNotice() {
         SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).click();
