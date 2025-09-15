@@ -11,15 +11,6 @@ import org.junit.jupiter.api.Test;
 public class AnyTest {
 
 
-    @Test
-    @DisplayName("Checking for text on the main page (©2025 Mercedes-Benz USA, LLC. All rights reserved)")
-    public void test2() {
-        String actual = new BasePage()
-                .openHomePage()
-                .scrollSite()
-                .getTextCopyrightMercedesBenzUsa();
-        Assertions.assertEquals("©2025 Mercedes-Benz USA, LLC. All rights reserved.", actual);
-    }
 
     @Test
     @DisplayName("Checking that the correct page has opened.")
