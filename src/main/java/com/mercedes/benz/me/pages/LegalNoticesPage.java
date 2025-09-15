@@ -17,5 +17,10 @@ public class LegalNoticesPage {
 
     public String getTextLegalNotices() {
         return driver.findElement(LEGAL_NOTICES_TEXT).getText();
+
+    }
+
+    public String getUrlAddress() {
+        return SeleniumWebDriver.getTabUrl();
     }
 }
