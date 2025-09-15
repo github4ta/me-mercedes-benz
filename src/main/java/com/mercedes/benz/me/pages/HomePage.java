@@ -31,9 +31,6 @@ public class HomePage {
     }
 
 
-
-
-
     public HomePage clickTermsOfUse() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
@@ -47,12 +44,6 @@ public class HomePage {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
         SearchContext context = parentElement.getShadowRoot();
         return context.findElement(TERMS_OF_USE).getText();
-    }
-
-    public String getTextPrivacyNotice() {
-        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
-        SearchContext context = parentElement.getShadowRoot();
-        return context.findElement(PRIVACY_NOTICE).getText();
     }
 
 

@@ -1,6 +1,8 @@
 package com.mercedes.benz.me;
 
+import com.mercedes.benz.me.driver.SeleniumWebDriver;
 import com.mercedes.benz.me.pages.BasePage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,5 +16,10 @@ public class SearchTest {
                 .clickInputSearch()
                 .isPresenceWindowSearch();
         Assertions.assertTrue(actual);
+    }
+
+    @AfterEach
+    public void driverQuit() {
+        SeleniumWebDriver.quitDriver();
     }
 }
