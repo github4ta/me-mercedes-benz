@@ -2,6 +2,7 @@ package com.mercedes.benz.me;
 
 import com.mercedes.benz.me.driver.SeleniumWebDriver;
 import com.mercedes.benz.me.pages.BasePage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class LegalNoticeTest {
         Assertions.assertEquals("Legal Notices", actual);
     }
 
-    @Test
+    @AfterEach
     public void ternDawn() {
         SeleniumWebDriver.quitDriver();
     }

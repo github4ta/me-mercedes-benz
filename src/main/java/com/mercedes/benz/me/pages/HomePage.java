@@ -5,21 +5,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class HomePage {
 
     private final By HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT = By.xpath("//a[@data-test-id='header-integration-item-fss-search-input']");
     private final By PARENT_SELECTOR = By.cssSelector("owc-footer");
     private final By COPYRIGHT = By.cssSelector("li.owc-lower-footer-legal__license");
-    private final By COPYRIGHT_TEXT_MERCEDES_BENZ_USA = By.cssSelector("a.owc-lower-footer-legal__link");
     private final By TERMS_OF_USE = By.cssSelector("li.owc-lower-footer-legal__item");
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
-    private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu__sublabel");
+    private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu");
     private final By PRIVACY_NOTICE = By.cssSelector("li.owc-lower-footer-legal__item");
     private final By SEARCH_WINDOW = By.id("fss-search-input");
-    private final WebDriver driver;
-    private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading[data-test-id=user-menu-title]");
+    private final By COPYRIGHT_TEXT_MERCEDES_BENZ_USA = By.cssSelector("a.owc-lower-footer-legal__link");
+    private WebDriver driver;
+    private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading.wb-heading.hydrated");
     private final By PARENT_SELECTOR_PRIVATE_CUSTOMER = By.cssSelector("iam-user-menu-v3");
 
     public HomePage() {
@@ -31,18 +30,9 @@ public class HomePage {
         return this;
     }
 
-    public HomePage clickTextCopyrightMercedesBenzUsa() {
-        WebElement parentElement = driver.findElement(PARENT_SELECTOR);
-        SearchContext context = parentElement.getShadowRoot();
-        WebElement element = context.findElement(COPYRIGHT_TEXT_MERCEDES_BENZ_USA);
-        element.click();
-        return this;
-    }
 
-    public HomePage switchToLastWindow() {
-        SeleniumWebDriver.switchToLastWindow();
-        return this;
-    }
+
+
 
     public HomePage clickTermsOfUse() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
@@ -52,9 +42,6 @@ public class HomePage {
         return this;
     }
 
-    public String getTextCopyrightMercedesBenzUsa() {
-        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
-    }
 
     public String getTextTermsOfUse() {
         WebElement parentElement = driver.findElement(PARENT_SELECTOR);
@@ -68,10 +55,6 @@ public class HomePage {
         return context.findElement(PRIVACY_NOTICE).getText();
     }
 
-    public HomePage clickHeaderPrivacyPolicyIcon() {
-        SeleniumWebDriver.clickElement(HEADER_PRIVACY_POLICY_ICON);
-        return this;
-    }
 
     public HomePage clickPrivateCustomer() {
         SeleniumWebDriver.clickElement(PRIVATE_CUSTOMER);
@@ -79,11 +62,9 @@ public class HomePage {
     }
 
     public String getTextYourMercedesBenzAccount() {
-        WebElement parentElement = driver.findElement(PARENT_SELECTOR_PRIVATE_CUSTOMER);
-        SearchContext context = parentElement.getShadowRoot();
-        return context.findElement(TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
-
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
     }
+
 
     public HomePage clickPrivacyNotice() {
         SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).click();
@@ -100,14 +81,11 @@ public class HomePage {
         return !driver.findElements(SEARCH_WINDOW).isEmpty();
     }
 
-    public HomePage scrollSite() {
+    public SearchPage scrollSite() {
         SeleniumWebDriver.scrollPageDown();
-        return this;
+        return new SearchPage();
     }
 
-    public String gettingTabAddress() {
-        return SeleniumWebDriver.getTabUrl();
-    }
 
     public HomePage getPrivacyNoticeText() {
         SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, PRIVACY_NOTICE).getText();
