@@ -20,6 +20,18 @@ public class LegalNoticeTest {
     }
 
     @Test
+    @DisplayName("get URL address")
+    public void test1() {
+        String actual = new BasePage()
+                .openHomePage()
+                .clickHeaderPrivacyPolicyIcon()
+                .getUrlAddress();
+
+        Assertions.assertEquals("https://www.mbusa.com/en/legal-notices", actual);
+
+    }
+
+    @Test
     public void ternDawn() {
         SeleniumWebDriver.quitDriver();
     }
