@@ -24,8 +24,8 @@ public class CopyrightPage {
         SearchContext context = parentElement.getShadowRoot();
         return context.findElement(PRIVACY_NOTICE).getText();
     }
-    public CopyrightPage scrool(){
-        SeleniumWebDriver.scrollPageDown();
-        return new SearchPage();
+
+    public String getTextCopyrightMercedesBenzUsa() {
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, COPYRIGHT_TEXT_MERCEDES_BENZ_USA).getText();
     }
 }

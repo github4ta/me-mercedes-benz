@@ -15,7 +15,6 @@ public class HomePage {
     private final By HEADER_PRIVACY_POLICY_ICON = By.cssSelector("a[data-test-id='header-privacy-policy']");
     private final By PRIVATE_CUSTOMER = By.cssSelector("div.hp-header-ssr-user-menu");
     private final By PRIVACY_NOTICE = By.cssSelector("li.owc-lower-footer-legal__item");
-    private final By SEARCH_WINDOW = By.id("fss-search-input");
     private final By COPYRIGHT_TEXT_MERCEDES_BENZ_USA = By.cssSelector("a.owc-lower-footer-legal__link");
     private WebDriver driver;
     private final By TEXT_YOUR_MERCEDES_BENZ_ACCOUNT = By.cssSelector("wb7-heading.wb-heading.hydrated");
@@ -25,9 +24,9 @@ public class HomePage {
         driver = SeleniumWebDriver.getDriver();
     }
 
-    public HomePage clickInputSearch() {
+    public SearchPage clickInputSearch() {
         driver.findElement(HEADER_INTEGRATION_ITEM_FSS_SEARCH_INPUT).click();
-        return this;
+        return new SearchPage();
     }
 
 
@@ -53,7 +52,7 @@ public class HomePage {
     }
 
     public String getTextYourMercedesBenzAccount() {
-        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR, TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
+        return SeleniumWebDriver.actionWithShadowElement(PARENT_SELECTOR_PRIVATE_CUSTOMER, TEXT_YOUR_MERCEDES_BENZ_ACCOUNT).getText();
     }
 
 
@@ -68,9 +67,6 @@ public class HomePage {
         return new LegalNoticesPage();
     }
 
-    public boolean isPresenceWindowSearch() {
-        return !driver.findElements(SEARCH_WINDOW).isEmpty();
-    }
 
     public SearchPage scrollSite() {
         SeleniumWebDriver.scrollPageDown();
