@@ -1,6 +1,5 @@
 package com.mercedes.benz.me.driver;
 
-import com.mercedes.benz.me.pages.HomePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,13 +45,13 @@ public class SeleniumWebDriver {
         driver.findElement(element).click();
     }
 
-    public static WebElement actionWithShadowElement(By parentSelector, By shadowElementSelector) {
+    public static WebElement actionWithShadowElement(By shadowHostSelector, By targetElement) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(parentSelector));
+        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(shadowHostSelector));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", shadowHost);
         assert shadowRoot != null;
-        return shadowRoot.findElement(shadowElementSelector);
+        return shadowRoot.findElement(targetElement);
     }
 
     public static void scrollPageDown() {
